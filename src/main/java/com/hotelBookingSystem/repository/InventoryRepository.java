@@ -1,8 +1,8 @@
 package com.hotelBookingSystem.repository;
 
-import com.hotelBookingSystem.entities.Hotel;
-import com.hotelBookingSystem.entities.Inventory;
-import com.hotelBookingSystem.entities.Room;
+import com.hotelBookingSystem.entity.Hotel;
+import com.hotelBookingSystem.entity.Inventory;
+import com.hotelBookingSystem.entity.Room;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,5 +53,6 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             @Param("roomsCount") Integer roomsCount
     );
 
+    List<Inventory> findByHotelAndDateBetween(Hotel hotel, LocalDate startDate, LocalDate endDate);
 
 }

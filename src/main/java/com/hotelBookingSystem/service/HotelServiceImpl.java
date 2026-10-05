@@ -3,8 +3,8 @@ package com.hotelBookingSystem.service;
 import com.hotelBookingSystem.dto.HotelDto;
 import com.hotelBookingSystem.dto.HotelInfoDto;
 import com.hotelBookingSystem.dto.RoomDto;
-import com.hotelBookingSystem.entities.Hotel;
-import com.hotelBookingSystem.entities.Room;
+import com.hotelBookingSystem.entity.Hotel;
+import com.hotelBookingSystem.entity.Room;
 import com.hotelBookingSystem.exception.ResourceNotFoundException;
 import com.hotelBookingSystem.repository.HotelRepository;
 import com.hotelBookingSystem.repository.RoomRepository;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

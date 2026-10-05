@@ -3,7 +3,7 @@ package com.hotelBookingSystem.service;
 import com.hotelBookingSystem.dto.BookingDto;
 import com.hotelBookingSystem.dto.BookingRequest;
 import com.hotelBookingSystem.dto.GuestDto;
-import com.hotelBookingSystem.entities.*;
+import com.hotelBookingSystem.entity.*;
 import com.hotelBookingSystem.enums.BookingStatus;
 import com.hotelBookingSystem.exception.ResourceNotFoundException;
 import com.hotelBookingSystem.repository.*;

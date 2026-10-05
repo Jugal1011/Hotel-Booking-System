@@ -1,10 +1,13 @@
 package com.hotelBookingSystem.service;
 
 import com.hotelBookingSystem.dto.HotelDto;
+import com.hotelBookingSystem.dto.HotelMinPriceDto;
 import com.hotelBookingSystem.dto.HotelSearchRequest;
-import com.hotelBookingSystem.entities.Hotel;
-import com.hotelBookingSystem.entities.Inventory;
-import com.hotelBookingSystem.entities.Room;
+import com.hotelBookingSystem.entity.Hotel;
+import com.hotelBookingSystem.entity.HotelMinPrice;
+import com.hotelBookingSystem.entity.Inventory;
+import com.hotelBookingSystem.entity.Room;
+import com.hotelBookingSystem.repository.HotelMinPriceRepository;
 import com.hotelBookingSystem.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +28,7 @@ public class InventoryServiceImpl implements InventoryService{
     private final ModelMapper modelMapper;
 
     private final InventoryRepository inventoryRepository;
+    private final HotelMinPriceRepository hotelMinPriceRepository;
 
     @Override
     public void initializeRoomForAYear(Room room) {
@@ -66,4 +70,16 @@ public class InventoryServiceImpl implements InventoryService{
 
         return hotelPage.map((element) -> modelMapper.map(element, HotelDto.class));
     }
+
+    @Override
+    public Page<HotelMinPriceDto> searchHotelsWithMinPrice(HotelSearchRequest hotelSearchRequest) {
+        log.info("Searching hotels with min price for {} city, from {} to {}", hotelSearchRequest.getCity(), hotelSearchRequest.getStartDate(), hotelSearchRequest.getEndDate());
+        Pageable pageable = PageRequest.of(hotelSearchRequest.getPage(), hotelSearchRequest.getSize());
+        Page<HotelMinPriceDto> hotelMinPricePage =
+                hotelMinPriceRepository.findHotelsWithAvailableInventory(hotelSearchRequest.getCity(), hotelSearchRequest.getStartDate(), hotelSearchRequest.getEndDate(), pageable);
+
+        return hotelMinPricePage;
+//        return hotelMinPricePage.map((element) -> modelMapper.map(element, HotelMinPriceDto.class));
+    }
+
 }

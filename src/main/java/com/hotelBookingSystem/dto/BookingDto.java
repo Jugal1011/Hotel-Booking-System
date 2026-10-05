@@ -1,8 +1,5 @@
 package com.hotelBookingSystem.dto;
 
-import com.hotelBookingSystem.entities.Hotel;
-import com.hotelBookingSystem.entities.Room;
-import com.hotelBookingSystem.entities.User;
 import com.hotelBookingSystem.enums.BookingStatus;
 import lombok.Data;
 

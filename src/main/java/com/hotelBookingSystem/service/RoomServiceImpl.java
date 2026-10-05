@@ -1,8 +1,8 @@
 package com.hotelBookingSystem.service;
 
 import com.hotelBookingSystem.dto.RoomDto;
-import com.hotelBookingSystem.entities.Hotel;
-import com.hotelBookingSystem.entities.Room;
+import com.hotelBookingSystem.entity.Hotel;
+import com.hotelBookingSystem.entity.Room;
 import com.hotelBookingSystem.exception.ResourceNotFoundException;
 import com.hotelBookingSystem.repository.HotelRepository;
 import com.hotelBookingSystem.repository.RoomRepository;

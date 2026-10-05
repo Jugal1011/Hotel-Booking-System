@@ -2,6 +2,7 @@ package com.hotelBookingSystem.controller;
 
 import com.hotelBookingSystem.dto.HotelDto;
 import com.hotelBookingSystem.dto.HotelInfoDto;
+import com.hotelBookingSystem.dto.HotelMinPriceDto;
 import com.hotelBookingSystem.dto.HotelSearchRequest;
 import com.hotelBookingSystem.service.HotelService;
 import com.hotelBookingSystem.service.InventoryService;
@@ -29,6 +30,13 @@ public class HotelBrowseController {
     @GetMapping("/{hotelId}/info")
     public ResponseEntity<HotelInfoDto> getHotelInfo(@PathVariable Long hotelId) {
         return ResponseEntity.ok(hotelService.getHotelInfoById(hotelId));
+    }
+
+    @GetMapping("/searchWithMinPrice")
+    public ResponseEntity<Page<HotelMinPriceDto>> searchHotelsWithMinPrice(@RequestBody HotelSearchRequest hotelSearchRequest) {
+
+        Page<HotelMinPriceDto> page = inventoryService.searchHotelsWithMinPrice(hotelSearchRequest);
+        return ResponseEntity.ok(page);
     }
 
 }

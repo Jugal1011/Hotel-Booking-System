@@ -1,4 +1,4 @@
-package com.hotelBookingSystem.entities;
+package com.hotelBookingSystem.entity;
 
 
 import jakarta.persistence.Embeddable;

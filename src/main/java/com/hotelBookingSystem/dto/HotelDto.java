@@ -1,6 +1,6 @@
 package com.hotelBookingSystem.dto;
 
-import com.hotelBookingSystem.entities.HotelContactInfo;
+import com.hotelBookingSystem.entity.HotelContactInfo;
 import lombok.Data;
 
 @Data

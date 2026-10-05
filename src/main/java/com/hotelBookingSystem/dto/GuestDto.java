@@ -1,6 +1,6 @@
 package com.hotelBookingSystem.dto;
 
-import com.hotelBookingSystem.entities.User;
+import com.hotelBookingSystem.entity.User;
 import com.hotelBookingSystem.enums.Gender;
 import lombok.Data;
 
