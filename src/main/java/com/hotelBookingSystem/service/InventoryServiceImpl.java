@@ -78,8 +78,8 @@ public class InventoryServiceImpl implements InventoryService{
         Page<HotelMinPriceDto> hotelMinPricePage =
                 hotelMinPriceRepository.findHotelsWithAvailableInventory(hotelSearchRequest.getCity(), hotelSearchRequest.getStartDate(), hotelSearchRequest.getEndDate(), pageable);
 
-        return hotelMinPricePage;
 //        return hotelMinPricePage.map((element) -> modelMapper.map(element, HotelMinPriceDto.class));
+        return hotelMinPricePage;
     }
 
 }
