@@ -2,6 +2,9 @@ package com.hotelBookingSystem.service;
 
 import com.hotelBookingSystem.dto.HotelDto;
 import com.hotelBookingSystem.dto.HotelInfoDto;
+import com.hotelBookingSystem.dto.HotelInfoRequestDto;
+
+import java.util.List;
 
 public interface HotelService {
     HotelDto createNewHotel(HotelDto hotelDto);
@@ -14,5 +17,7 @@ public interface HotelService {
 
     void activateHotel(Long hotelId);
 
-    HotelInfoDto getHotelInfoById(Long hotelId);
+    HotelInfoDto getHotelInfoById(Long hotelId, HotelInfoRequestDto hotelInfoRequestDto);
+
+    List<HotelDto> getAllHotels();
 }

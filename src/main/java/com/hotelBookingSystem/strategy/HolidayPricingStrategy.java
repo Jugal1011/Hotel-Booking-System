@@ -2,6 +2,7 @@ package com.hotelBookingSystem.strategy;
 
 import com.hotelBookingSystem.entity.Inventory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 

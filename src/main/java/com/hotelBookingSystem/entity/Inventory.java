@@ -12,11 +12,16 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Table(
+        uniqueConstraints = @UniqueConstraint(
+            name = "unique_hotel_room_date",
+            columnNames = {"hotel_id", "room_id", "date"}
+))
 @Builder
-@Table(uniqueConstraints = @UniqueConstraint(name = "unique_hotel_room_date", columnNames = {"hotel_id", "room_id", "date"}))
 @NoArgsConstructor
 @AllArgsConstructor
 public class Inventory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,7 +50,7 @@ public class Inventory {
     private BigDecimal surgeFactor;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price; // basePrice * surgeFactor
+    private BigDecimal price;
 
     @Column(nullable = false)
     private String city;

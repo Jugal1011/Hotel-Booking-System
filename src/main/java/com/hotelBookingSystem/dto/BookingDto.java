@@ -1,8 +1,12 @@
 package com.hotelBookingSystem.dto;
 
+import com.hotelBookingSystem.entity.Hotel;
+import com.hotelBookingSystem.entity.Room;
+import com.hotelBookingSystem.entity.User;
 import com.hotelBookingSystem.enums.BookingStatus;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,4 +21,5 @@ public class BookingDto {
     private LocalDateTime updatedAt;
     private BookingStatus bookingStatus;
     private Set<GuestDto> guests;
+    private BigDecimal amount;
 }

@@ -16,12 +16,13 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class HotelMinPrice {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="hotel_id", nullable = false)
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
     @Column(nullable = false)
@@ -40,5 +41,4 @@ public class HotelMinPrice {
         this.hotel = hotel;
         this.date = date;
     }
-
 }

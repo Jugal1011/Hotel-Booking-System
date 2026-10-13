@@ -2,6 +2,7 @@ package com.hotelBookingSystem.controller;
 
 import com.hotelBookingSystem.dto.*;
 import com.hotelBookingSystem.security.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -24,11 +25,13 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
+    @Operation(summary = "Create a new account", tags = {"Auth"})
     public ResponseEntity<UserDto> signup(@RequestBody SignUpRequestDto signUpRequestDto) {
         return new ResponseEntity<>(authService.signUp(signUpRequestDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Login request", tags = {"Auth"})
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         String[] tokens = authService.login(loginDto);
 
@@ -40,6 +43,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
+    @Operation(summary = "Refresh the JWT with a refresh token", tags = {"Auth"})
     public ResponseEntity<LoginResponseDto> refresh(HttpServletRequest request) {
         String refreshToken = Arrays.stream(request.getCookies()).
                 filter(cookie -> "refreshToken".equals(cookie.getName()))

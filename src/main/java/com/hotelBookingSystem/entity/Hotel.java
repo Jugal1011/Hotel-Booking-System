@@ -1,5 +1,6 @@
 package com.hotelBookingSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @Table(name = "hotel")
 public class Hotel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,9 +43,11 @@ public class Hotel {
     @Column(nullable = false)
     private Boolean active;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User owner;
 
     @OneToMany(mappedBy = "hotel")
+    @JsonIgnore
     private List<Room> rooms;
+
 }

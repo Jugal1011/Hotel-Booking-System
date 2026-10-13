@@ -2,12 +2,13 @@ package com.hotelBookingSystem.strategy;
 
 import com.hotelBookingSystem.entity.Inventory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @RequiredArgsConstructor
-public class UrgencyPricingStrategy implements PricingStrategy {
+public class UrgencyPricingStrategy implements PricingStrategy{
 
     private final PricingStrategy wrapped;
 
