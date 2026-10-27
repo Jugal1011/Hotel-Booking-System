@@ -30,6 +30,8 @@ services:
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
       FRONTEND_URL: ${FRONTEND_URL}
+      ADMIN_EMAIL: "${ADMIN_EMAIL:?Set ADMIN_EMAIL in your .env file}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in your .env file}"
 
 volumes:
   pgdata:

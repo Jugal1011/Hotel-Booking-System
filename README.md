@@ -56,7 +56,7 @@ src/main/java/com/hotelBookingSystem/
    git clone https://github.com/Jugal1011/Hotel-Booking-System.git
    ```
 3. 📝 Copy `application-example.properties` to `application.properties`
-4. 🔑 Set environment variables: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `FRONTEND_URL`
+4. 🔑 Set environment variables: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `FRONTEND_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`
 5. ▶️ Run the app
    ```bash
    ./mvnw spring-boot:run
@@ -67,6 +67,10 @@ src/main/java/com/hotelBookingSystem/
    ```
 
 API base path: `http://localhost:8080/api/v1`
+
+On startup, the app creates a `HOTEL_MANAGER` account using `ADMIN_EMAIL` and `ADMIN_PASSWORD` if that email is not already registered. The password is BCrypt-hashed. Set both variables before starting the app; subsequent startups skip account creation when the configured email already exists.
+
+When using Docker Compose, put `ADMIN_EMAIL` and a strong, unique `ADMIN_PASSWORD` in your local `.env` file. Compose requires both values and passes them to the application container; do not put credentials in the Dockerfile or commit `.env`.
 
 ## 👨‍💻 Author
 
