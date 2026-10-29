@@ -7,7 +7,6 @@ import com.hotelBookingSystem.repository.HotelMinPriceRepository;
 import com.hotelBookingSystem.repository.HotelRepository;
 import com.hotelBookingSystem.repository.InventoryRepository;
 import com.hotelBookingSystem.strategy.PricingService;
-import com.hotelBookingSystem.strategy.PricingStrategy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -30,15 +29,15 @@ import java.util.stream.Collectors;
 @Transactional
 public class PricingUpdateService {
 
-    // Scheduler to update the inventory and HotelMinPrice tables every hour
+    // Scheduler to update inventory and HotelMinPrice tables.
 
     private final HotelRepository hotelRepository;
     private final InventoryRepository inventoryRepository;
     private final HotelMinPriceRepository hotelMinPriceRepository;
     private final PricingService pricingService;
 
-//    @Scheduled(cron = "*/5 * * * * *")
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "${pricing.update.cron}")
+//    @Scheduled(cron = "0 0 * * * *")
     public void updatePrices() {
         int page = 0;
         int batchSize = 100;

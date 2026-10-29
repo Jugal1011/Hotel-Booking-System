@@ -3,12 +3,12 @@ package com.hotelBookingSystem.controller;
 import com.hotelBookingSystem.dto.*;
 import com.hotelBookingSystem.service.BookingService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class HotelBookingController {
 
     @PostMapping("/init")
     @Operation(summary = "Initiate the booking", tags = {"Booking Flow"})
-    public ResponseEntity<BookingDto> initialiseBooking(@RequestBody BookingRequest bookingRequest) {
+    public ResponseEntity<BookingDto> initialiseBooking(@Valid @RequestBody BookingRequest bookingRequest) {
         return ResponseEntity.ok(bookingService.initialiseBooking(bookingRequest));
     }
 

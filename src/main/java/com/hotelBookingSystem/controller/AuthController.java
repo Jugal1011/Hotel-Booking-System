@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +27,13 @@ public class AuthController {
 
     @PostMapping("/signup")
     @Operation(summary = "Create a new account", tags = {"Auth"})
-    public ResponseEntity<UserDto> signup(@RequestBody SignUpRequestDto signUpRequestDto) {
+    public ResponseEntity<UserDto> signup(@Valid @RequestBody SignUpRequestDto signUpRequestDto) {
         return new ResponseEntity<>(authService.signUp(signUpRequestDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     @Operation(summary = "Login request", tags = {"Auth"})
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginRequestDto loginDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         String[] tokens = authService.login(loginDto);
 
         Cookie cookie = new Cookie("refreshToken", tokens[1]);

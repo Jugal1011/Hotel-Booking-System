@@ -17,6 +17,9 @@ public class JWTService {
     @Value("${jwt.secretKey}")
     private String jwtSecretKey;
 
+    @Value("${jwt.access-token-expiration}")
+    private long accessTokenExpiration;
+
     private SecretKey getSecretKey() {
         return Keys.hmacShaKeyFor(jwtSecretKey.getBytes(StandardCharsets.UTF_8));
     }
@@ -27,7 +30,7 @@ public class JWTService {
                 .claim("email", user.getEmail())
                 .claim("roles", user.getRoles().toString())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000*60*10))
+                .expiration(new Date(System.currentTimeMillis() + accessTokenExpiration))
                 .signWith(getSecretKey())
                 .compact();
     }

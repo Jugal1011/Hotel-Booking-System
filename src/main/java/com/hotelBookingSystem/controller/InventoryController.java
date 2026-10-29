@@ -4,6 +4,7 @@ import com.hotelBookingSystem.dto.InventoryDto;
 import com.hotelBookingSystem.dto.UpdateInventoryRequestDto;
 import com.hotelBookingSystem.service.InventoryService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class InventoryController {
     @PatchMapping("/rooms/{roomId}")
     @Operation(summary = "Update the inventory of a room", tags = {"Admin Inventory"})
     public ResponseEntity<Void> updateInventory(@PathVariable Long roomId,
-                                                @RequestBody UpdateInventoryRequestDto updateInventoryRequestDto) {
+                                                @Valid @RequestBody UpdateInventoryRequestDto updateInventoryRequestDto) {
         inventoryService.updateInventory(roomId, updateInventoryRequestDto);
         return ResponseEntity.noContent().build();
     }

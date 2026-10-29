@@ -4,11 +4,11 @@ import com.hotelBookingSystem.dto.BookingDto;
 import com.hotelBookingSystem.dto.GuestDto;
 import com.hotelBookingSystem.dto.ProfileUpdateRequestDto;
 import com.hotelBookingSystem.dto.UserDto;
-import com.hotelBookingSystem.entity.User;
 import com.hotelBookingSystem.service.BookingService;
 import com.hotelBookingSystem.service.GuestService;
 import com.hotelBookingSystem.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class UserController {
 
     @PatchMapping("/profile")
     @Operation(summary = "Update the user profile", tags = {"Profile"})
-    public ResponseEntity<Void> updateProfile(@RequestBody ProfileUpdateRequestDto profileUpdateRequestDto) {
+    public ResponseEntity<Void> updateProfile(@Valid @RequestBody ProfileUpdateRequestDto profileUpdateRequestDto) {
         userService.updateProfile(profileUpdateRequestDto);
 
         return ResponseEntity.noContent().build();
@@ -53,13 +53,13 @@ public class UserController {
 
     @PostMapping("/guests")
     @Operation(summary = "Add a new guest to my guests list", tags = {"Booking Guests"})
-    public ResponseEntity<GuestDto> addNewGuest(@RequestBody GuestDto guestDto) {
+    public ResponseEntity<GuestDto> addNewGuest(@Valid @RequestBody GuestDto guestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(guestService.addNewGuest(guestDto));
     }
 
     @PutMapping("guests/{guestId}")
     @Operation(summary = "Update a guest", tags = {"Booking Guests"})
-    public ResponseEntity<Void> updateGuest(@PathVariable Long guestId, @RequestBody GuestDto guestDto) {
+    public ResponseEntity<Void> updateGuest(@PathVariable Long guestId, @Valid @RequestBody GuestDto guestDto) {
         guestService.updateGuest(guestId, guestDto);
         return ResponseEntity.noContent().build();
     }
